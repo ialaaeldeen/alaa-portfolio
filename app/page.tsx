@@ -47,12 +47,12 @@ export default function Home() {
             View Projects
           </a>
 
-          <a
-            href="/resume.pdf"
-            download
-            className="px-8 py-3 border border-gray-500 rounded-lg hover:border-white transition"
+        <a
+          href="/resume.pdf"
+          download
+          className="border px-6 py-3 rounded-lg hover:bg-white hover:text-black transition"
           >
-            Download Resume
+          Download Resume
           </a>
 
         </div>
