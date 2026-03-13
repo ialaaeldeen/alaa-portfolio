@@ -134,149 +134,106 @@ export default function Home() {
       </section>
 
      {/* FEATURED PROJECTS */}
-<section id="projects" className="max-w-6xl mx-auto px-6 py-24">
+      <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
 
-  <h2 className="text-4xl font-bold text-center mb-16">
-    Featured Projects
-  </h2>
+      <h2 className="text-4xl font-bold text-center mb-16">
+      Featured Projects
+      </h2>
 
-  <div className="grid md:grid-cols-2 gap-10">
+      <div className="grid md:grid-cols-2 gap-10">
 
-    {/* SAMHM */}
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.4 }}
-      className="bg-gray-900 border border-gray-800 rounded-xl p-6 
-      hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 
-      transition duration-300"
-    >
+      {[
+      {
+      title: "SAMHM – Mental Health Sentiment Analysis",
+      desc: "AI system analyzing social media text for early mental-health awareness using NLP and transformer models with secure DevSecOps deployment.",
+      tools: "Python · FastAPI · Next.js · Docker · PostgreSQL · CI/CD"
+      },
 
-      <h3 className="text-xl font-semibold mb-3">
-        SAMHM – Mental Health Sentiment Analysis
-      </h3>
+      {
+      title: "Cloud Security with Deep Learning IDS",
+      desc: "Hybrid CNN-RNN intrusion detection system using CICIDS2018 dataset to detect cyber threats in cloud environments.",
+      tools: "Python · TensorFlow · CNN · RNN · Deep Learning"
+      },
 
-      <p className="text-gray-400 text-sm">
-        Final Year Capstone project designing an AI system to analyze
-        social-media text for early mental-health awareness using NLP
-        and transformer models with secure DevSecOps deployment.
-      </p>
+      {
+      title: "Secure Wireless Network & Penetration Testing",
+      desc: "Designed VLAN-segmented secure wireless architecture and performed penetration testing using Nmap and Metasploit.",
+      tools: "Cisco Packet Tracer · Ubuntu · Nmap · Metasploit"
+      },
 
-      <div className="mt-4 text-xs text-gray-500">
-        Python · FastAPI · Next.js · Docker · PostgreSQL · CI/CD
-      </div>
+      {
+      title: "Ronin Network Hack Investigation",
+      desc: "Digital forensic investigation of the Ronin blockchain hack linked to Lazarus Group including transaction analysis and forensic documentation.",
+      tools: "Wireshark · Blockchain Forensics"
+      },
 
-      <div className="flex gap-4 mt-5">
+      {
+      title: "Fitness Tracker Application",
+      desc: "Java OOP-based fitness tracker with goal setting, progress visualization, and persistent data storage.",
+      tools: "Java · JavaFX · UML"
+      },
 
-        <a
-          href="https://samhm-frontend.vercel.app"
-          target="_blank"
-          className="px-4 py-2 text-sm bg-blue-600 rounded-md hover:bg-blue-700 transition"
-        >
-          Live
-        </a>
+      {
+      title: "Healthcare Data Analytics (Hadoop Ecosystem)",
+      desc: "Built big-data healthcare pipeline using Hadoop, Hive and Impala for analytics on 55K medical records.",
+      tools: "Hadoop · Hive · Impala · Python · MySQL"
+      },
 
-        <a
-          href="https://github.com/wixsz/samhm-backend"
-          target="_blank"
-          className="px-4 py-2 text-sm border border-gray-600 rounded-md hover:border-white transition"
-        >
-          GitHub
-        </a>
+      {
+      title: "Uber Data Breach Analysis (2016 & 2022)",
+      desc: "Cybersecurity, legal and ethical analysis of Uber data breaches including MFA fatigue, credential leaks and governance failures.",
+      tools: "Cybersecurity Analysis · GDPR · Ethics Frameworks"
+      },
 
-      </div>
+      {
+      title: "Student Lifestyle & Academic Performance",
+      desc: "Statistical analysis of lifestyle factors affecting GPA using correlation, regression and visualization.",
+      tools: "R Language · Statistics · Data Visualization"
+      },
 
-    </motion.div>
+      {
+      title: "Market Basket Analysis – Apriori",
+      desc: "Association rule mining on retail transactions to discover product bundles using support, confidence and lift metrics.",
+      tools: "Python · Pandas · Data Mining · Visualization"
+      },
 
+      {
+      title: "OECD Municipal Waste Dashboard",
+      desc: "Interactive Tableau dashboard analyzing 30+ years of OECD waste generation trends aligned with SDG 12.5.",
+      tools: "Tableau · Data Storytelling · EDA"
+      },
 
-    {/* IDS */}
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.4 }}
-      className="bg-gray-900 border border-gray-800 rounded-xl p-6 
-      hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 
-      transition duration-300"
-    >
+      {
+      title: "EcoCycle 2.0 – Smart Recycling Platform",
+      desc: "UX prototype for a sustainability platform integrating AI waste recognition, AR sorting and IoT smart-bin validation.",
+      tools: "Figma · UI/UX · Sustainability Design"
+      }
 
-      <h3 className="text-xl font-semibold mb-3">
-        Cloud Security with Deep Learning IDS
-      </h3>
+      ].map((project, i) => (
 
-      <p className="text-gray-400 text-sm">
-        Developed a hybrid CNN-RNN intrusion detection system using the
-        CICIDS2018 dataset to detect cyber threats in cloud environments.
-      </p>
-
-      <div className="mt-4 text-xs text-gray-500">
-        Python · TensorFlow · CNN · RNN · Deep Learning
-      </div>
-
-    </motion.div>
-
-
-    {/* NETWORK */}
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.4 }}
-      className="bg-gray-900 border border-gray-800 rounded-xl p-6 
-      hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 
-      transition duration-300"
-    >
+      <div
+      key={i}
+      className="bg-slate-900/60 backdrop-blur border border-slate-800 rounded-xl p-6 hover:border-blue-500 transition"
+      >
 
       <h3 className="text-xl font-semibold mb-3">
-        Secure Wireless Network & Penetration Testing
+      {project.title}
       </h3>
 
-      <p className="text-gray-400 text-sm">
-        Designed VLAN-segmented secure wireless network architecture
-        and conducted penetration testing using Nmap and Metasploit.
+      <p className="text-gray-400 mb-4">
+      {project.desc}
       </p>
 
-      <div className="mt-4 text-xs text-gray-500">
-        Cisco Packet Tracer · Ubuntu · Nmap · Metasploit
-      </div>
-
-    </motion.div>
-
-
-    {/* RONIN */}
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.4 }}
-      className="bg-gray-900 border border-gray-800 rounded-xl p-6 
-      hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 
-      transition duration-300"
-    >
-
-      <h3 className="text-xl font-semibold mb-3">
-        Ronin Network Hack Investigation
-      </h3>
-
-      <p className="text-gray-400 text-sm">
-        Conducted digital forensic investigation of the Ronin
-        blockchain hack linked to the Lazarus Group.
+      <p className="text-sm text-gray-500">
+      {project.tools}
       </p>
 
-      <div className="mt-4 text-xs text-gray-500">
-        Wireshark · Blockchain Forensics
       </div>
 
-    </motion.div>
+      ))}
 
-  </div>
-
-</section>
+      </div>
+      </section>
 
      {/* TECHNICAL SKILLS */}
 <section id="skills" className="max-w-6xl mx-auto px-6 py-24">
