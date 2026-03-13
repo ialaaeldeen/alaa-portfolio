@@ -6,7 +6,6 @@ import CyberBackground from "@/components/CyberBackground";
 import { motion } from "framer-motion";
 
 export default function Home() {
-
   return (
     <main className="bg-gradient-to-b from-black via-gray-900 to-black text-white min-h-screen scroll-smooth">
 
@@ -15,9 +14,8 @@ export default function Home() {
 
       {/* BACKGROUND */}
       <div className="fixed inset-0 -z-10">
-  <CyberBackground />
-</div>
-
+        <CyberBackground />
+      </div>
 
       {/* HERO */}
       <section className="pt-28 pb-24 text-center max-w-5xl mx-auto px-6">
