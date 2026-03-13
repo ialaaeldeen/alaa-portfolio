@@ -1,65 +1,517 @@
-import Image from "next/image";
+"use client";
+
+import Navbar from "@/components/Navbar";
+import Contact from "@/components/Contact";
+import CyberBackground from "@/components/CyberBackground";
+import { motion } from "framer-motion";
 
 export default function Home() {
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <main className="bg-gradient-to-b from-black via-gray-900 to-black text-white min-h-screen scroll-smooth">
+
+      {/* NAVBAR */}
+      <Navbar />
+
+      {/* BACKGROUND */}
+      <div className="fixed inset-0 -z-10">
+  <CyberBackground />
+</div>
+
+
+      {/* HERO */}
+      <section className="pt-28 pb-24 text-center max-w-5xl mx-auto px-6">
+
+        <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+          Hi, I'm{" "}
+          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            Alaaeldeen
+          </span>
+        </h1>
+
+        <p className="mt-4 text-xl text-gray-300">
+          Cybersecurity Engineer
+        </p>
+
+        <p className="mt-6 text-gray-400 text-lg max-w-2xl mx-auto">
+          Computer Science student specializing in cybersecurity, network
+          security, DevSecOps, and AI-driven security systems.
+        </p>
+
+        <div className="mt-8 flex justify-center gap-5">
+
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#projects"
+            className="px-8 py-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            View Projects
+          </a>
+
+          <a
+            href="/resume.pdf"
+            download
+            className="px-8 py-3 border border-gray-500 rounded-lg hover:border-white transition"
+          >
+            Download Resume
+          </a>
+
+        </div>
+
+      </section>
+
+
+      {/* ABOUT */}
+      <section id="about" className="max-w-6xl mx-auto px-6 py-24">
+
+        <h2 className="text-4xl font-bold text-center mb-16">
+          About
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+
+          <div className="flex justify-center">
+            <img
+              src="/profile.jpg"
+              alt="Alaaeldeen"
+              className="w-72 h-72 object-cover rounded-full border-4 border-gray-800 shadow-lg"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+
+          <div>
+
+            <div className="text-gray-400 leading-relaxed">
+
+              <p>
+                I am a Computer Science student specializing in cybersecurity
+                with a data science extension at Taylor's University. My interests
+                focus on cybersecurity engineering, network defense, and applying
+                machine learning to security challenges.
+              </p>
+
+              <p className="mt-6">
+                My work includes building secure systems, analyzing cyber
+                threats, and developing intelligent security solutions using
+                modern tools such as Python, Docker, and machine learning
+                frameworks.
+              </p>
+
+            </div>
+
+            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 mt-8">
+
+              <h3 className="text-xl font-semibold mb-6">
+                Education
+              </h3>
+
+              <ul className="space-y-4 text-gray-400 text-sm">
+
+                <li>
+                  Bachelor of Computer Science (Cybersecurity)
+                  <br />
+                  Data Science Extension
+                </li>
+
+                <li>
+                  Expected Graduation
+                  <br />
+                  2026
+                </li>
+
+                <li>
+                  Location
+                  <br />
+                  Subang Jaya, Malaysia
+                </li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
         </div>
-      </main>
+
+      </section>
+
+     {/* FEATURED PROJECTS */}
+<section id="projects" className="max-w-6xl mx-auto px-6 py-24">
+
+  <h2 className="text-4xl font-bold text-center mb-16">
+    Featured Projects
+  </h2>
+
+  <div className="grid md:grid-cols-2 gap-10">
+
+    {/* SAMHM */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.4 }}
+      className="bg-gray-900 border border-gray-800 rounded-xl p-6 
+      hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 
+      transition duration-300"
+    >
+
+      <h3 className="text-xl font-semibold mb-3">
+        SAMHM – Mental Health Sentiment Analysis
+      </h3>
+
+      <p className="text-gray-400 text-sm">
+        Final Year Capstone project designing an AI system to analyze
+        social-media text for early mental-health awareness using NLP
+        and transformer models with secure DevSecOps deployment.
+      </p>
+
+      <div className="mt-4 text-xs text-gray-500">
+        Python · FastAPI · Next.js · Docker · PostgreSQL · CI/CD
+      </div>
+
+      <div className="flex gap-4 mt-5">
+
+        <a
+          href="https://samhm-frontend.vercel.app"
+          target="_blank"
+          className="px-4 py-2 text-sm bg-blue-600 rounded-md hover:bg-blue-700 transition"
+        >
+          Live
+        </a>
+
+        <a
+          href="https://github.com/wixsz/samhm-backend"
+          target="_blank"
+          className="px-4 py-2 text-sm border border-gray-600 rounded-md hover:border-white transition"
+        >
+          GitHub
+        </a>
+
+      </div>
+
+    </motion.div>
+
+
+    {/* IDS */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.4 }}
+      className="bg-gray-900 border border-gray-800 rounded-xl p-6 
+      hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 
+      transition duration-300"
+    >
+
+      <h3 className="text-xl font-semibold mb-3">
+        Cloud Security with Deep Learning IDS
+      </h3>
+
+      <p className="text-gray-400 text-sm">
+        Developed a hybrid CNN-RNN intrusion detection system using the
+        CICIDS2018 dataset to detect cyber threats in cloud environments.
+      </p>
+
+      <div className="mt-4 text-xs text-gray-500">
+        Python · TensorFlow · CNN · RNN · Deep Learning
+      </div>
+
+    </motion.div>
+
+
+    {/* NETWORK */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.4 }}
+      className="bg-gray-900 border border-gray-800 rounded-xl p-6 
+      hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 
+      transition duration-300"
+    >
+
+      <h3 className="text-xl font-semibold mb-3">
+        Secure Wireless Network & Penetration Testing
+      </h3>
+
+      <p className="text-gray-400 text-sm">
+        Designed VLAN-segmented secure wireless network architecture
+        and conducted penetration testing using Nmap and Metasploit.
+      </p>
+
+      <div className="mt-4 text-xs text-gray-500">
+        Cisco Packet Tracer · Ubuntu · Nmap · Metasploit
+      </div>
+
+    </motion.div>
+
+
+    {/* RONIN */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.4 }}
+      className="bg-gray-900 border border-gray-800 rounded-xl p-6 
+      hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 
+      transition duration-300"
+    >
+
+      <h3 className="text-xl font-semibold mb-3">
+        Ronin Network Hack Investigation
+      </h3>
+
+      <p className="text-gray-400 text-sm">
+        Conducted digital forensic investigation of the Ronin
+        blockchain hack linked to the Lazarus Group.
+      </p>
+
+      <div className="mt-4 text-xs text-gray-500">
+        Wireshark · Blockchain Forensics
+      </div>
+
+    </motion.div>
+
+  </div>
+
+</section>
+
+     {/* TECHNICAL SKILLS */}
+<section id="skills" className="max-w-6xl mx-auto px-6 py-24">
+
+  <h2 className="text-4xl font-bold text-center mb-16">
+    Technical Skills
+  </h2>
+
+  <div className="grid grid-cols-2 md:grid-cols-3 gap-12 text-center">
+
+    {/* Python */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <i className="devicon-python-plain text-5xl text-yellow-400"></i>
+      <p className="text-gray-300">Python</p>
     </div>
-  );
-}
+
+    {/* Java */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <i className="devicon-java-plain text-5xl text-red-500"></i>
+      <p className="text-gray-300">Java</p>
+    </div>
+
+    {/* C++ */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <i className="devicon-cplusplus-plain text-5xl text-blue-400"></i>
+      <p className="text-gray-300">C++</p>
+    </div>
+
+    {/* MySQL */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <i className="devicon-mysql-plain text-5xl text-blue-500"></i>
+      <p className="text-gray-300">MySQL</p>
+    </div>
+
+    {/* R */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <i className="devicon-r-plain text-5xl text-blue-300"></i>
+      <p className="text-gray-300">R</p>
+    </div>
+
+    {/* Next.js */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <i className="devicon-nextjs-original text-5xl"></i>
+      <p className="text-gray-300">Next.js</p>
+    </div>
+
+  </div>
+
+</section>
+
+        {/* CYBERSECURITY TOOLS */}
+<section id="security-tools" className="max-w-6xl mx-auto px-6 py-24">
+
+  <h2 className="text-4xl font-bold text-center mb-16">
+    Cybersecurity & Networking Tools
+  </h2>
+
+  <div className="grid grid-cols-2 md:grid-cols-3 gap-12 text-center">
+
+    {/* Wireshark */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <img
+        src="/icons/wireshark.svg"
+        className="h-14 mx-auto invert brightness-200"
+        alt="Wireshark"
+      />
+      <p className="text-gray-300">Wireshark</p>
+    </div>
+
+    {/* Metasploit */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <img
+        src="/icons/metasploit.svg"
+        className="h-14 mx-auto invert brightness-200"
+        alt="Metasploit"
+      />
+      <p className="text-gray-300">Metasploit</p>
+    </div>
+
+    {/* Docker */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <img
+        src="/icons/docker.svg"
+        className="h-14 mx-auto invert brightness-200"
+        alt="Docker"
+      />
+      <p className="text-gray-300">Docker</p>
+    </div>
+
+    {/* Cisco */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <img
+        src="/icons/cisco.svg"
+        className="h-14 mx-auto invert brightness-200"
+        alt="Cisco"
+      />
+      <p className="text-gray-300">Cisco</p>
+    </div>
+
+    {/* Kali Linux */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <img
+        src="/icons/kalilinux.svg"
+        className="h-14 mx-auto invert brightness-200"
+        alt="Kali Linux"
+      />
+      <p className="text-gray-300">Kali Linux</p>
+    </div>
+
+    {/* Linux */}
+    <div className="space-y-3 transform hover:scale-110 transition duration-300">
+      <img
+        src="/icons/linux.svg"
+        className="h-14 mx-auto invert brightness-200"
+        alt="Linux"
+      />
+      <p className="text-gray-300">Linux</p>
+    </div>
+
+  </div>
+
+</section>
+         {/* AI & DATA SCIENCE TOOLS */}
+<section id="ai-tools" className="max-w-6xl mx-auto px-6 py-24">
+
+  <h2 className="text-4xl font-bold text-center mb-16">
+    AI & Data Science Tools
+  </h2>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+
+    {/* Python */}
+    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" className="w-16 h-16 mb-4"/>
+      <p className="text-lg font-semibold">Python</p>
+    </div>
+
+    {/* Pandas */}
+    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" className="w-16 h-16 mb-4"/>
+      <p className="text-lg font-semibold">Pandas</p>
+    </div>
+
+    {/* NumPy */}
+    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" className="w-16 h-16 mb-4"/>
+      <p className="text-lg font-semibold">NumPy</p>
+    </div>
+
+    {/* R */}
+    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" className="w-16 h-16 mb-4"/>
+      <p className="text-lg font-semibold">R</p>
+    </div>
+
+    {/* Scikit Learn */}
+    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" className="w-16 h-16 mb-4"/>
+      <p className="text-lg font-semibold">Scikit-learn</p>
+    </div>
+
+    {/* TensorFlow */}
+    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" className="w-16 h-16 mb-4"/>
+      <p className="text-lg font-semibold">TensorFlow</p>
+    </div>
+
+    {/* PyTorch */}
+    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" className="w-16 h-16 mb-4"/>
+      <p className="text-lg font-semibold">PyTorch</p>
+    </div>
+
+    {/* Matplotlib */}
+    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Matplotlib_icon.svg" className="w-16 h-16 mb-4"/>
+      <p className="text-lg font-semibold">Matplotlib</p>
+    </div>
+
+    {/* Tableau */}
+    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
+      <img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" className="w-16 h-16 mb-4"/>
+      <p className="text-lg font-semibold">Tableau</p>
+    </div>
+
+    {/* Jupyter */}
+    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" className="w-16 h-16 mb-4"/>
+      <p className="text-lg font-semibold">Jupyter Notebook</p>
+    </div>
+
+    {/* Colab */}
+    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
+      <img src="https://colab.research.google.com/img/colab_favicon_256px.png" className="w-16 h-16 mb-4"/>
+      <p className="text-lg font-semibold">Google Colab</p>
+    </div>
+
+  </div>
+
+</section>
+      {/* CONTACT FORM */}
+      <Contact />
+
+       {/* FOOTER */}
+<footer className="text-center py-10 border-t border-gray-800 text-gray-500">
+
+  <p className="text-lg font-semibold">
+    Alaaeldeen
+  </p>
+
+  <p className="mt-2">
+    Cybersecurity Engineer | AI Security | DevSecOps
+  </p>
+
+  <div className="flex justify-center gap-6 mt-6">
+
+    <a href="https://github.com/ialaaeldeen" target="_blank" rel="noopener noreferrer">
+      GitHub
+    </a>
+
+    <a href="https://linkedin.com/in/alaaeldeeneltayeb" target="_blank" rel="noopener noreferrer">
+      LinkedIn
+    </a>
+
+    <a href="mailto:allouah30@outlook.com">
+      Email
+    </a>
+
+  </div>
+
+  <p className="mt-6 text-sm">
+    © {new Date().getFullYear()} Alaaeldeen
+  </p>
+
+</footer>
+
+</main>
+  );}
