@@ -175,7 +175,8 @@ export default function Home() {
       {
       title: "Secure Wireless Network & Penetration Testing",
       desc: "Designed VLAN-segmented secure wireless architecture and performed penetration testing using Nmap and Metasploit.",
-      tools: "Cisco Packet Tracer · Ubuntu · Nmap · Metasploit"
+      tools: "Cisco Packet Tracer · Ubuntu · Nmap · Metasploit",
+      diagram: "/network-architecture.png"
       },
 
       {
@@ -213,7 +214,7 @@ export default function Home() {
       desc: "Digital forensic investigation of the Ronin blockchain hack linked to Lazarus Group including transaction analysis and forensic documentation.",
       tools: "Wireshark · Blockchain Forensics"
       },
-      
+
       {
       title: "Market Basket Analysis – Apriori",
       desc: "Association rule mining on retail transactions to discover product bundles using support, confidence and lift metrics.",
@@ -461,18 +462,7 @@ export default function Home() {
       <img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" className="w-16 h-16 mb-4"/>
       <p className="text-lg font-semibold">Tableau</p>
     </div>
-
-    {/* Jupyter */}
-    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" className="w-16 h-16 mb-4"/>
-      <p className="text-lg font-semibold">Jupyter Notebook</p>
-    </div>
-
-    {/* Colab */}
-    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
-      <img src="https://colab.research.google.com/img/colab_favicon_256px.png" className="w-16 h-16 mb-4"/>
-      <p className="text-lg font-semibold">Google Colab</p>
-    </div>
+    
 
   </div>
 
