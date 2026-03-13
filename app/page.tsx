@@ -49,7 +49,8 @@ export default function Home() {
 
         <a
           href="/resume.pdf"
-          download
+          target="_blank"
+          rel="noopener noreferrer"
           className="border px-6 py-3 rounded-lg hover:bg-white hover:text-black transition"
           >
           Download Resume
@@ -146,7 +147,9 @@ export default function Home() {
       {
       title: "SAMHM – Mental Health Sentiment Analysis",
       desc: "AI system analyzing social media text for early mental-health awareness using NLP and transformer models with secure DevSecOps deployment.",
-      tools: "Python · FastAPI · Next.js · Docker · PostgreSQL · CI/CD"
+      tools: "Python · FastAPI · Next.js · Docker · PostgreSQL · CI/CD",
+      github: "https://github.com/wixsz/samhm-backend",
+      live: "https://samhm-frontend.vercel.app/"
       },
 
       {
@@ -206,7 +209,8 @@ export default function Home() {
       {
       title: "EcoCycle 2.0 – Smart Recycling Platform",
       desc: "UX prototype for a sustainability platform integrating AI waste recognition, AR sorting and IoT smart-bin validation.",
-      tools: "Figma · UI/UX · Sustainability Design"
+      tools: "Figma · UI/UX · Sustainability Design",
+      live: "https://www.figma.com/proto/OkUqDhaiTuRNRD4mygq6ct/EcoCycle?node-id=67-1294&p=f&t=jX6V54zOxsuJRLmW-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=67%3A1294&show-proto-sidebar=1"
       }
 
       ].map((project, i) => (
@@ -224,9 +228,35 @@ export default function Home() {
       {project.desc}
       </p>
 
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-gray-500 mb-4">
       {project.tools}
       </p>
+
+      <div className="flex gap-4 flex-wrap">
+
+      {project.github && (
+      <a
+      href={project.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-sm px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition"
+      >
+      GitHub
+      </a>
+      )}
+
+      {project.live && (
+      <a
+      href={project.live}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-sm px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+      >
+      Live
+      </a>
+      )}
+
+      </div>
 
       </div>
 
