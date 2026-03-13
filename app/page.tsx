@@ -61,78 +61,91 @@ export default function Home() {
       </section>
 
 
-      {/* ABOUT */}
-      <section id="about" className="max-w-6xl mx-auto px-6 py-24">
+     {/* ABOUT */}
+<section id="about" className="max-w-6xl mx-auto px-6 py-24">
 
-        <h2 className="text-4xl font-bold text-center mb-16">
-          About
-        </h2>
+  <h2 className="text-4xl font-bold text-center mb-16">
+    About
+  </h2>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+  <div className="grid md:grid-cols-2 gap-12 items-center">
 
-          <div className="flex justify-center">
-            <img
-              src="/profile.jpg"
-              alt="Alaaeldeen"
-              className="w-72 h-72 object-cover rounded-full border-4 border-gray-800 shadow-lg"
-            />
-          </div>
+    <div className="flex justify-center">
+      <img
+        src="/profile.jpg"
+        alt="Alaaeldeen"
+        className="w-72 h-72 object-cover rounded-full border-4 border-gray-800 shadow-lg"
+      />
+    </div>
 
-          <div>
+    <div>
 
-            <div className="text-gray-400 leading-relaxed">
+      <div className="text-gray-400 leading-relaxed">
 
-              <p>
-                I am a Computer Science student specializing in cybersecurity
-                with a data science extension at Taylor's University. My interests
-                focus on cybersecurity engineering, network defense, and applying
-                machine learning to security challenges.
-              </p>
+        <p>
+          I am a Computer Science student specializing in cybersecurity
+          with a data science extension at Taylor's University. My interests
+          focus on cybersecurity engineering, network defense, and applying
+          machine learning to security challenges.
+        </p>
 
-              <p className="mt-6">
-                My work includes building secure systems, analyzing cyber
-                threats, and developing intelligent security solutions using
-                modern tools such as Python, Docker, and machine learning
-                frameworks.
-              </p>
+        <p className="mt-6">
+          My work includes building secure systems, analyzing cyber
+          threats, and developing intelligent security solutions using
+          modern tools such as Python, Docker, and machine learning
+          frameworks.
+        </p>
 
-            </div>
+      </div>
 
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 mt-8">
+      <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 mt-8">
 
-              <h3 className="text-xl font-semibold mb-6">
-                Education
-              </h3>
+      <h3 className="text-xl font-semibold mb-8">
+        Education
+      </h3>
 
-              <ul className="space-y-4 text-gray-400 text-sm">
+      <div className="space-y-6 text-gray-400 text-sm">
 
-                <li>
-                  Bachelor of Computer Science (Cybersecurity)
-                  <br />
-                  Data Science Extension
-                </li>
-
-                <li>
-                  Expected Graduation
-                  <br />
-                  2026
-                </li>
-
-                <li>
-                  Location
-                  <br />
-                  Subang Jaya, Malaysia
-                </li>
-
-              </ul>
-
-            </div>
-
-          </div>
-
+        <div>
+          <p>Taylor's University</p>
         </div>
 
-      </section>
+        <div>
+          <p>Bachelor's of Computer Science - Cybersecurity</p>
+          <p>Data Science Extension</p>
+        </div>
+
+        <div>
+          <p>Expected Graduation</p>
+          <p>2026</p>
+        </div>
+
+        <div>
+          <p>Location</p>
+          <p>Subang Jaya, Malaysia</p>
+        </div>
+
+      </div>
+
+      <div className="mt-10">
+
+        <h3 className="text-xl font-semibold mb-4">
+          Awards & Achievements
+        </h3>
+
+        <p className="text-gray-400 text-sm">
+          Dean's List – Taylor's University (4 Semesters)
+        </p>
+
+      </div>
+
+    </div>
+
+    </div>
+
+  </div>
+
+</section>
 
      {/* FEATURED PROJECTS */}
       <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
@@ -153,9 +166,10 @@ export default function Home() {
       },
 
       {
-      title: "Cloud Security with Deep Learning IDS",
-      desc: "Hybrid CNN-RNN intrusion detection system using CICIDS2018 dataset to detect cyber threats in cloud environments.",
-      tools: "Python · TensorFlow · CNN · RNN · Deep Learning"
+      title: "EcoCycle 2.0 – Smart Recycling Platform",
+      desc: "UX prototype for a sustainability platform integrating AI waste recognition, AR sorting and IoT smart-bin validation.",
+      tools: "Figma · UI/UX · Sustainability Design",
+      live: "https://www.figma.com/proto/OkUqDhaiTuRNRD4mygq6ct/EcoCycle?node-id=67-1294&p=f&t=jX6V54zOxsuJRLmW-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=67%3A1294&show-proto-sidebar=1"
       },
 
       {
@@ -165,9 +179,9 @@ export default function Home() {
       },
 
       {
-      title: "Ronin Network Hack Investigation",
-      desc: "Digital forensic investigation of the Ronin blockchain hack linked to Lazarus Group including transaction analysis and forensic documentation.",
-      tools: "Wireshark · Blockchain Forensics"
+      title: "Cloud Security with Deep Learning IDS",
+      desc: "Hybrid CNN-RNN intrusion detection system using CICIDS2018 dataset to detect cyber threats in cloud environments.",
+      tools: "Python · TensorFlow · CNN · RNN · Deep Learning"
       },
 
       {
@@ -177,15 +191,15 @@ export default function Home() {
       },
 
       {
-      title: "Healthcare Data Analytics (Hadoop Ecosystem)",
-      desc: "Built big-data healthcare pipeline using Hadoop, Hive and Impala for analytics on 55K medical records.",
-      tools: "Hadoop · Hive · Impala · Python · MySQL"
-      },
-
-      {
       title: "Uber Data Breach Analysis (2016 & 2022)",
       desc: "Cybersecurity, legal and ethical analysis of Uber data breaches including MFA fatigue, credential leaks and governance failures.",
       tools: "Cybersecurity Analysis · GDPR · Ethics Frameworks"
+      },
+
+      {
+      title: "Healthcare Data Analytics (Hadoop Ecosystem)",
+      desc: "Built big-data healthcare pipeline using Hadoop, Hive and Impala for analytics on 55K medical records.",
+      tools: "Hadoop · Hive · Impala · Python · MySQL"
       },
 
       {
@@ -194,6 +208,12 @@ export default function Home() {
       tools: "R Language · Statistics · Data Visualization"
       },
 
+      {
+      title: "Ronin Network Hack Investigation",
+      desc: "Digital forensic investigation of the Ronin blockchain hack linked to Lazarus Group including transaction analysis and forensic documentation.",
+      tools: "Wireshark · Blockchain Forensics"
+      },
+      
       {
       title: "Market Basket Analysis – Apriori",
       desc: "Association rule mining on retail transactions to discover product bundles using support, confidence and lift metrics.",
@@ -204,20 +224,13 @@ export default function Home() {
       title: "OECD Municipal Waste Dashboard",
       desc: "Interactive Tableau dashboard analyzing 30+ years of OECD waste generation trends aligned with SDG 12.5.",
       tools: "Tableau · Data Storytelling · EDA"
-      },
-
-      {
-      title: "EcoCycle 2.0 – Smart Recycling Platform",
-      desc: "UX prototype for a sustainability platform integrating AI waste recognition, AR sorting and IoT smart-bin validation.",
-      tools: "Figma · UI/UX · Sustainability Design",
-      live: "https://www.figma.com/proto/OkUqDhaiTuRNRD4mygq6ct/EcoCycle?node-id=67-1294&p=f&t=jX6V54zOxsuJRLmW-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=67%3A1294&show-proto-sidebar=1"
       }
 
       ].map((project, i) => (
 
       <div
       key={i}
-      className="bg-slate-900/60 backdrop-blur border border-slate-800 rounded-xl p-6 hover:border-blue-500 transition"
+      className="bg-slate-900/60 backdrop-blur border border-slate-800 rounded-xl p-6 hover:border-blue-500 hover:-translate-y-1 transition duration-300"
       >
 
       <h3 className="text-xl font-semibold mb-3">
