@@ -125,18 +125,6 @@ export default function Home() {
 
       </div>
 
-      <div className="mt-10">
-
-        <h3 className="text-xl font-semibold mb-4">
-          Awards & Achievements
-        </h3>
-
-        <p className="text-gray-400 text-sm">
-          Dean's List – Taylor's University (4 Semesters)
-        </p>
-
-      </div>
-
     </div>
 
     </div>
@@ -160,7 +148,7 @@ export default function Home() {
       desc: "AI system analyzing social media text for early mental-health awareness using NLP and transformer models with secure DevSecOps deployment.",
       tools: "Python · FastAPI · Next.js · Docker · PostgreSQL · CI/CD",
       github: "https://github.com/wixsz/samhm-backend",
-      live: "https://samhm-frontend.vercel.app/"
+      live: "https://samhm.vercel.app//"
       },
 
       {
