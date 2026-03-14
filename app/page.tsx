@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
-import Contact from "@/components/Contact";
+import Contact from "../components/Contact.jsx";
 import CyberBackground from "@/components/CyberBackground";
 import { motion } from "framer-motion";
 
