@@ -1,33 +1,62 @@
 import { Resend } from "resend";
+import { NextResponse } from "next/server";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { name, email, message } = body;
+    const { name, email, message } = await req.json();
 
-    console.log("FORM DATA:", name, email, message);
+    // Basic validation
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    console.log("FORM DATA:", { name, email, message });
 
-    const response = await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
+    const data = await resend.emails.send({
+      from: "Alaaeldeen Portfolio <onboarding@resend.dev>",
       to: ["allouah30@icloud.com"],
-      subject: "New Portfolio Message",
-      replyTo: email,
+
+      // VERY IMPORTANT for reply
+      reply_to: email,
+
+      subject: `New Portfolio Message from ${name}`,
+
       html: `
-        <h2>New Message</h2>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p>${message}</p>
+        <div style="font-family: Arial, sans-serif; line-height:1.6">
+          <h2>New Portfolio Contact Message</h2>
+
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+
+          <p><strong>Message:</strong></p>
+          <p>${message}</p>
+
+          <hr/>
+          <p style="font-size:12px;color:gray">
+          Sent from your portfolio contact form
+          </p>
+        </div>
       `,
     });
 
-    console.log("EMAIL SENT:", response);
+    console.log("EMAIL RESPONSE:", data);
 
-    return Response.json({ success: true });
+    return NextResponse.json({
+      success: true,
+      message: "Email sent successfully",
+    });
 
   } catch (error) {
-    console.error("ERROR:", error);
-    return Response.json({ error: "Email failed" }, { status: 500 });
+    console.error("EMAIL ERROR:", error);
+
+    return NextResponse.json(
+      { success: false, error: "Failed to send email" },
+      { status: 500 }
+    );
   }
 }
