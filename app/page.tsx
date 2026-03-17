@@ -437,7 +437,7 @@ export default function Home() {
   <div className="flex justify-center gap-8 text-3xl mb-6">
 
     <a
-      href="https://github.com/YOUR_GITHUB_USERNAME"
+      href="https://github.com/ialaaeldeen"
       target="_blank"
       className="text-gray-400 hover:text-white transition"
     >
