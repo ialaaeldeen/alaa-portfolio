@@ -1,5 +1,6 @@
 "use client";
-
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import Navbar from "@/components/Navbar";
 import Contact from "../components/Contact.jsx";
 import CyberBackground from "@/components/CyberBackground";
@@ -457,34 +458,45 @@ export default function Home() {
       <Contact />
 
        {/* FOOTER */}
-<footer className="text-center py-10 border-t border-gray-800 text-gray-500">
+<footer className="text-center py-12">
 
-  <p className="text-lg font-semibold">
+  <h2 className="text-2xl font-bold mb-4">
     Alaaeldeen
-  </p>
+  </h2>
 
-  <p className="mt-2">
+  <p className="text-gray-400 mb-6">
     Cybersecurity Engineer | AI Security | DevSecOps
   </p>
 
-  <div className="flex justify-center gap-6 mt-6">
+  <div className="flex justify-center gap-8 text-3xl mb-6">
 
-    <a href="https://github.com/ialaaeldeen" target="_blank" rel="noopener noreferrer">
-      GitHub
+    <a
+      href="https://github.com/YOUR_GITHUB_USERNAME"
+      target="_blank"
+      className="text-gray-400 hover:text-white transition"
+    >
+      <FaGithub />
     </a>
 
-    <a href="https://linkedin.com/in/alaaeldeeneltayeb" target="_blank" rel="noopener noreferrer">
-      LinkedIn
+    <a
+      href="https://linkedin.com/in/YOUR_LINKEDIN_USERNAME"
+      target="_blank"
+      className="text-gray-400 hover:text-blue-500 transition"
+    >
+      <FaLinkedin />
     </a>
 
-    <a href="mailto:allouah30@outlook.com">
-      Email
+    <a
+      href="mailto:allouah30@outlook.com"
+      className="text-gray-400 hover:text-red-400 transition"
+    >
+      <MdEmail />
     </a>
 
   </div>
 
-  <p className="mt-6 text-sm">
-    © {new Date().getFullYear()} Alaaeldeen
+  <p className="text-gray-500 text-sm">
+    © 2026 Alaaeldeen
   </p>
 
 </footer>
