@@ -12,33 +12,51 @@ export default function Contact() {
   });
 
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (loading) return;
+
+    setLoading(true);
     setStatus("Sending...");
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    if (res.ok) {
-      setStatus("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
-    } else {
-      setStatus("Something went wrong.");
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setStatus("✅ Message sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        setStatus("❌ Failed to send message.");
+      }
+
+    } catch (error) {
+      console.error("Contact error:", error);
+      setStatus("❌ Network error. Please try again.");
     }
+
+    setLoading(false);
   };
 
   return (
@@ -54,13 +72,13 @@ export default function Contact() {
       </button>
 
       {open && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
 
-          <div className="bg-gray-900 p-8 rounded-xl w-full max-w-lg">
+          <div className="bg-gray-900 p-8 rounded-xl w-full max-w-lg relative">
 
             <button
               onClick={() => setOpen(false)}
-              className="text-gray-400 float-right"
+              className="absolute top-4 right-4 text-gray-400 hover:text-white"
             >
               ✕
             </button>
@@ -101,9 +119,10 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 p-3 rounded-lg font-semibold"
+                disabled={loading}
+                className="w-full bg-blue-600 p-3 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50"
               >
-                Send Message
+                {loading ? "Sending..." : "Send Message"}
               </button>
 
               {status && (

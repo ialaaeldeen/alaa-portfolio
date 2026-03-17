@@ -4,31 +4,42 @@ import { NextResponse } from "next/server";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
+  console.log("CONTACT API CALLED");
+
   try {
-    const { name, email, message } = await req.json();
+    const body = await req.json();
+    const { name, email, message } = body;
+
+    console.log("FORM DATA RECEIVED:", { name, email, message });
 
     // Basic validation
     if (!name || !email || !message) {
+      console.error("VALIDATION FAILED");
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { success: false, error: "All fields are required." },
         { status: 400 }
       );
     }
 
-    console.log("FORM DATA:", { name, email, message });
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND API KEY MISSING");
+      return NextResponse.json(
+        { success: false, error: "Email service not configured." },
+        { status: 500 }
+      );
+    }
 
-    const data = await resend.emails.send({
+    const emailResponse = await resend.emails.send({
       from: "Alaaeldeen Portfolio <onboarding@resend.dev>",
       to: ["allouah30@icloud.com"],
 
-      // VERY IMPORTANT for reply
-      reply_to: email,
-
       subject: `New Portfolio Message from ${name}`,
 
+      reply_to: email,
+
       html: `
-        <div style="font-family: Arial, sans-serif; line-height:1.6">
-          <h2>New Portfolio Contact Message</h2>
+        <div style="font-family: Arial, sans-serif; line-height:1.6; padding:10px;">
+          <h2>📩 New Portfolio Contact Message</h2>
 
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
@@ -36,15 +47,26 @@ export async function POST(req: Request) {
           <p><strong>Message:</strong></p>
           <p>${message}</p>
 
-          <hr/>
+          <hr />
+
           <p style="font-size:12px;color:gray">
-          Sent from your portfolio contact form
+            This message was sent from your portfolio contact form.
           </p>
         </div>
       `,
+
+      text: `
+New Portfolio Contact Message
+
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}
+      `,
     });
 
-    console.log("EMAIL RESPONSE:", data);
+    console.log("EMAIL SENT SUCCESSFULLY:", emailResponse);
 
     return NextResponse.json({
       success: true,
@@ -55,7 +77,10 @@ export async function POST(req: Request) {
     console.error("EMAIL ERROR:", error);
 
     return NextResponse.json(
-      { success: false, error: "Failed to send email" },
+      {
+        success: false,
+        error: "Failed to send email. Please try again later.",
+      },
       { status: 500 }
     );
   }
