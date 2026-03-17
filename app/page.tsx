@@ -401,18 +401,8 @@ export default function Home() {
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" className="w-16 h-16 mb-4"/>
       <p className="text-lg font-semibold">Python</p>
     </div>
+    
 
-    {/* Pandas */}
-    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" className="w-16 h-16 mb-4"/>
-      <p className="text-lg font-semibold">Pandas</p>
-    </div>
-
-    {/* NumPy */}
-    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" className="w-16 h-16 mb-4"/>
-      <p className="text-lg font-semibold">NumPy</p>
-    </div>
 
     {/* R */}
     <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
@@ -420,17 +410,6 @@ export default function Home() {
       <p className="text-lg font-semibold">R</p>
     </div>
 
-    {/* Scikit Learn */}
-    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" className="w-16 h-16 mb-4"/>
-      <p className="text-lg font-semibold">Scikit-learn</p>
-    </div>
-
-    {/* TensorFlow */}
-    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" className="w-16 h-16 mb-4"/>
-      <p className="text-lg font-semibold">TensorFlow</p>
-    </div>
 
     {/* PyTorch */}
     <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
@@ -438,11 +417,7 @@ export default function Home() {
       <p className="text-lg font-semibold">PyTorch</p>
     </div>
 
-    {/* Matplotlib */}
-    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Matplotlib_icon.svg" className="w-16 h-16 mb-4"/>
-      <p className="text-lg font-semibold">Matplotlib</p>
-    </div>
+
 
     {/* Tableau */}
     <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
@@ -479,7 +454,7 @@ export default function Home() {
     </a>
 
     <a
-      href="https://linkedin.com/in/YOUR_LINKEDIN_USERNAME"
+      href="https://www.linkedin.com/in/alaaeldeeneltayeb/"
       target="_blank"
       className="text-gray-400 hover:text-blue-500 transition"
     >
