@@ -5,58 +5,13 @@ import { useState } from "react";
 export default function Contact() {
   const [open, setOpen] = useState(false);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const sendEmail = () => {
+    const subject = encodeURIComponent("Portfolio Contact");
+    const body = encodeURIComponent(
+      "Hello Alaaeldeen,\n\nI saw your portfolio and would like to contact you.\n\nBest regards,"
+    );
 
-  const [status, setStatus] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (loading) return;
-
-    setLoading(true);
-    setStatus("Sending...");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-
-      if (res.ok && data.success) {
-        setStatus("✅ Message sent successfully!");
-        setFormData({
-          name: "",
-          email: "",
-          message: "",
-        });
-      } else {
-        setStatus("❌ Failed to send message.");
-      }
-
-    } catch (error) {
-      console.error("Contact error:", error);
-      setStatus("❌ Network error. Please try again.");
-    }
-
-    setLoading(false);
+    window.location.href = `mailto:allouah30@icloud.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -68,7 +23,7 @@ export default function Contact() {
         onClick={() => setOpen(true)}
         className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold"
       >
-        Open Contact Form
+        Open Contact
       </button>
 
       {open && (
@@ -83,53 +38,24 @@ export default function Contact() {
               ✕
             </button>
 
-            <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+            <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <p className="text-gray-400 mb-6">
+              If you'd like to collaborate, discuss a project, or just say hello,
+              feel free to email me directly.
+            </p>
 
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full p-3 rounded bg-gray-800"
-              />
+            <p className="text-blue-400 mb-6 font-medium">
+              allouah30@icloud.com
+            </p>
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full p-3 rounded bg-gray-800"
-              />
+            <button
+              onClick={sendEmail}
+              className="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded-lg font-semibold"
+            >
+              Send Email
+            </button>
 
-              <textarea
-                name="message"
-                rows={4}
-                placeholder="Your Message"
-                required
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full p-3 rounded bg-gray-800"
-              />
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-blue-600 p-3 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50"
-              >
-                {loading ? "Sending..." : "Send Message"}
-              </button>
-
-              {status && (
-                <p className="text-center text-gray-400">{status}</p>
-              )}
-
-            </form>
           </div>
 
         </div>
