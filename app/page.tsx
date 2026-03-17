@@ -410,15 +410,6 @@ export default function Home() {
       <p className="text-lg font-semibold">R</p>
     </div>
 
-
-    {/* PyTorch */}
-    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" className="w-16 h-16 mb-4"/>
-      <p className="text-lg font-semibold">PyTorch</p>
-    </div>
-
-
-
     {/* Tableau */}
     <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
       <img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" className="w-16 h-16 mb-4"/>
