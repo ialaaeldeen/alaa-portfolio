@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 
       subject: `New Portfolio Message from ${name}`,
 
-      reply_to: email,
+      replyTo: email,
 
       html: `
         <div style="font-family: Arial, sans-serif; line-height:1.6; padding:10px;">
