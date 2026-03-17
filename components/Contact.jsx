@@ -11,7 +11,7 @@ export default function Contact() {
       "Hello Alaaeldeen,\n\nI saw your portfolio and would like to contact you.\n\nBest regards,"
     );
 
-    window.location.href = `mailto:allouah30@icloud.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:allouah30@outlook.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -46,7 +46,7 @@ export default function Contact() {
             </p>
 
             <p className="text-blue-400 mb-6 font-medium">
-              allouah30@icloud.com
+              allouah30@outlook.com
             </p>
 
             <button
