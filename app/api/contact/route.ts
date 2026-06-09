@@ -1,85 +1,84 @@
-import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+type ContactRequestBody = {
+  name?: string;
+  email?: string;
+  message?: string;
+};
 
-export async function POST(req: Request) {
-  console.log("CONTACT API CALLED");
+const CONTACT_RECEIVER_EMAIL =
+  process.env.CONTACT_RECEIVER_EMAIL || "allouah30@outlook.com";
 
+function cleanText(value: unknown): string {
+  if (typeof value !== "string") {
+    return "";
+  }
+
+  return value.trim();
+}
+
+export async function POST(request: Request) {
   try {
-    const body = await req.json();
-    const { name, email, message } = body;
+    const resendApiKey = process.env.RESEND_API_KEY;
 
-    console.log("FORM DATA RECEIVED:", { name, email, message });
-
-    // Basic validation
-    if (!name || !email || !message) {
-      console.error("VALIDATION FAILED");
+    if (!resendApiKey) {
       return NextResponse.json(
-        { success: false, error: "All fields are required." },
+        {
+          success: false,
+          message:
+            "Contact email service is not configured. Please contact me directly by email.",
+        },
+        { status: 503 }
+      );
+    }
+
+    const body = (await request.json()) as ContactRequestBody;
+
+    const name = cleanText(body.name);
+    const email = cleanText(body.email);
+    const message = cleanText(body.message);
+
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Name, email, and message are required.",
+        },
         { status: 400 }
       );
     }
 
-    if (!process.env.RESEND_API_KEY) {
-      console.error("RESEND API KEY MISSING");
-      return NextResponse.json(
-        { success: false, error: "Email service not configured." },
-        { status: 500 }
-      );
-    }
+    const resend = new Resend(resendApiKey);
 
-    const emailResponse = await resend.emails.send({
-      from: "Alaaeldeen Portfolio <onboarding@resend.dev>",
-      to: ["allouah30@icloud.com"],
-
-      subject: `New Portfolio Message from ${name}`,
-
+    await resend.emails.send({
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: CONTACT_RECEIVER_EMAIL,
+      subject: `New portfolio message from ${name}`,
       replyTo: email,
-
-      html: `
-        <div style="font-family: Arial, sans-serif; line-height:1.6; padding:10px;">
-          <h2>📩 New Portfolio Contact Message</h2>
-
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-
-          <p><strong>Message:</strong></p>
-          <p>${message}</p>
-
-          <hr />
-
-          <p style="font-size:12px;color:gray">
-            This message was sent from your portfolio contact form.
-          </p>
-        </div>
-      `,
-
       text: `
-New Portfolio Contact Message
-
 Name: ${name}
 Email: ${email}
 
 Message:
 ${message}
-      `,
+      `.trim(),
     });
 
-    console.log("EMAIL SENT SUCCESSFULLY:", emailResponse);
-
-    return NextResponse.json({
-      success: true,
-      message: "Email sent successfully",
-    });
-
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Message sent successfully.",
+      },
+      { status: 200 }
+    );
   } catch (error) {
-    console.error("EMAIL ERROR:", error);
+    console.error("Contact API error:", error);
 
     return NextResponse.json(
       {
         success: false,
-        error: "Failed to send email. Please try again later.",
+        message: "Something went wrong while sending the message.",
       },
       { status: 500 }
     );

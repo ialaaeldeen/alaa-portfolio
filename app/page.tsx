@@ -1,471 +1,584 @@
 "use client";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+
+import SideQuickMenu from "@/components/SideQuickMenu";
 import Navbar from "@/components/Navbar";
 import Contact from "../components/Contact.jsx";
 import CyberBackground from "@/components/CyberBackground";
 import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+
+type Project = {
+  title: string;
+  desc: string;
+  tools: string;
+  badge?: string;
+  github?: string;
+  live?: string;
+  diagram?: string;
+};
+
+type TechnicalSkill = {
+  name: string;
+  iconClass: string;
+  colorClass?: string;
+};
+
+type ToolItem = {
+  name: string;
+  icon: string;
+};
+
+type AiToolItem = {
+  name: string;
+  icon: string;
+};
+
+const resumeFile = "/Alaaeldeen-Abdelnour-Resume.pdf";
+
+const projects: Project[] = [
+  {
+    title: "CyberShield360 – Website Security Scanner",
+    desc: "A professional cybersecurity portfolio and freelance-ready platform designed for authorized website security assessment. The MVP performs website availability checks, security header analysis, SSL/TLS validation, DNS and email security checks, explainable risk scoring, database persistence, and API-ready reporting to help organizations understand website exposure in a clear and safe way.",
+    tools:
+      "FastAPI · SQLAlchemy · SQLite · Pytest · Docker · Security Headers · SSL/TLS · DNS Security · Risk Scoring",
+    badge: "Active Build",
+  },
+  {
+    title: "SAMHM – Mental Health Sentiment Analysis",
+    desc: "AI system analyzing social media text for early mental-health awareness using NLP and transformer models with secure DevSecOps deployment.",
+    tools: "Python · FastAPI · Next.js · Docker · PostgreSQL · CI/CD",
+    github: "https://github.com/wixsz/samhm-backend",
+    live: "https://samhm.vercel.app/",
+  },
+  {
+    title: "Secure Wireless Network & Penetration Testing",
+    desc: "Designed VLAN-segmented secure wireless architecture and performed penetration testing using Nmap and Metasploit.",
+    tools: "Cisco Packet Tracer · Ubuntu · Nmap · Metasploit",
+    diagram: "/network-architecture.png",
+  },
+  {
+    title: "EcoCycle 2.0 – Smart Recycling Platform",
+    desc: "UX prototype for a sustainability platform integrating AI waste recognition, AR sorting, and IoT smart-bin validation.",
+    tools: "Figma · UI/UX · Sustainability Design",
+    live: "https://www.figma.com/proto/OkUqDhaiTuRNRD4mygq6ct/EcoCycle?node-id=67-1294&p=f&t=jX6V54zOxsuJRLmW-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=67%3A1294&show-proto-sidebar=1",
+  },
+  {
+    title: "Cloud Security with Deep Learning IDS",
+    desc: "Hybrid CNN-RNN intrusion detection system using CICIDS2018 dataset to detect cyber threats in cloud environments.",
+    tools: "Python · TensorFlow · CNN · RNN · Deep Learning",
+  },
+  {
+    title: "Fitness Tracker Application",
+    desc: "Java OOP-based fitness tracker with goal setting, progress visualization, and persistent data storage.",
+    tools: "Java · JavaFX · UML",
+  },
+  {
+    title: "Uber Data Breach Analysis (2016 & 2022)",
+    desc: "Cybersecurity, legal, and ethical analysis of Uber data breaches including MFA fatigue, credential leaks, and governance failures.",
+    tools: "Cybersecurity Analysis · GDPR · Ethics Frameworks",
+  },
+  {
+    title: "Healthcare Data Analytics",
+    desc: "Built a big-data healthcare pipeline using Hadoop, Hive, and Impala for analytics on 55K medical records.",
+    tools: "Hadoop · Hive · Impala · Python · MySQL",
+  },
+  {
+    title: "Ronin Network Hack Investigation",
+    desc: "Digital forensic investigation of the Ronin blockchain hack linked to Lazarus Group, including transaction analysis and forensic documentation.",
+    tools: "Wireshark · Blockchain Forensics",
+  },
+  {
+    title: "Market Basket Analysis – Apriori",
+    desc: "Association rule mining on retail transactions to discover product bundles using support, confidence, and lift metrics.",
+    tools: "Python · Pandas · Data Mining · Visualization",
+  },
+  {
+    title: "OECD Municipal Waste Dashboard",
+    desc: "Interactive Tableau dashboard analyzing 30+ years of OECD waste generation trends aligned with SDG 12.5.",
+    tools: "Tableau · Data Storytelling · EDA",
+  },
+];
+
+const technicalSkills: TechnicalSkill[] = [
+  {
+    name: "Python",
+    iconClass: "devicon-python-plain",
+    colorClass: "text-yellow-400",
+  },
+  {
+    name: "Java",
+    iconClass: "devicon-java-plain",
+    colorClass: "text-red-500",
+  },
+  {
+    name: "C++",
+    iconClass: "devicon-cplusplus-plain",
+    colorClass: "text-blue-400",
+  },
+  {
+    name: "MySQL",
+    iconClass: "devicon-mysql-plain",
+    colorClass: "text-blue-500",
+  },
+  {
+    name: "R",
+    iconClass: "devicon-r-plain",
+    colorClass: "text-blue-300",
+  },
+  {
+    name: "Next.js",
+    iconClass: "devicon-nextjs-original",
+    colorClass: "text-white",
+  },
+];
+
+const securityTools: ToolItem[] = [
+  {
+    name: "Wireshark",
+    icon: "/icons/wireshark.svg",
+  },
+  {
+    name: "Metasploit",
+    icon: "/icons/metasploit.svg",
+  },
+  {
+    name: "Docker",
+    icon: "/icons/docker.svg",
+  },
+  {
+    name: "Cisco",
+    icon: "/icons/cisco.svg",
+  },
+  {
+    name: "Kali Linux",
+    icon: "/icons/kalilinux.svg",
+  },
+  {
+    name: "Linux",
+    icon: "/icons/linux.svg",
+  },
+];
+
+const aiTools: AiToolItem[] = [
+  {
+    name: "Python",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  },
+  {
+    name: "R",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg",
+  },
+  {
+    name: "Tableau",
+    icon: "https://cdn.worldvectorlogo.com/logos/tableau-software.svg",
+  },
+];
 
 export default function Home() {
   return (
-    <main className="bg-gradient-to-b from-black via-gray-900 to-black text-white min-h-screen scroll-smooth">
+    <main className="min-h-screen overflow-x-hidden scroll-smooth bg-gradient-to-b from-black via-slate-950 to-black text-white selection:bg-cyan-400/30">
+      <SideQuickMenu />
 
-      {/* NAVBAR */}
       <Navbar />
 
-      {/* BACKGROUND */}
       <div className="fixed inset-0 -z-10">
         <CyberBackground />
       </div>
 
       {/* HERO */}
-      <section className="pt-28 pb-24 text-center max-w-5xl mx-auto px-6">
+      <section
+        id="home"
+        className="mx-auto max-w-5xl scroll-mt-24 px-6 pb-24 pt-32 text-center"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65 }}
+        >
+          <p className="mb-5 inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-200 shadow-lg shadow-cyan-500/10">
+            Cybersecurity · AI Security · DevSecOps
+          </p>
 
-        <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-          Hi, I'm{" "}
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            Alaaeldeen
-          </span>
-        </h1>
+          <h1 className="text-5xl font-bold leading-tight md:text-6xl">
+            Hi, I&apos;m{" "}
+            <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Alaaeldeen
+            </span>
+          </h1>
 
-        <p className="mt-4 text-xl text-gray-300">
-          Cybersecurity Engineer
+          <p className="mt-4 text-xl text-slate-300">
+            Cybersecurity Engineer
+          </p>
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-400">
+            Computer Science student specializing in cybersecurity, network
+            security, DevSecOps, and AI-driven security systems.
+          </p>
+
+          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="#projects"
+              className="rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-3 font-semibold text-white shadow-lg shadow-cyan-500/25 transition duration-300 hover:-translate-y-1 hover:shadow-cyan-400/40"
+            >
+              View Projects
+            </a>
+
+            <a
+              href={resumeFile}
+              download="Alaaeldeen-Abdelnour-Resume.pdf"
+              className="rounded-xl border border-cyan-300/40 bg-white/5 px-8 py-3 font-semibold text-slate-100 backdrop-blur transition duration-300 hover:-translate-y-1 hover:bg-white hover:text-slate-950"
+            >
+              Download Resume
+            </a>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ABOUT */}
+      <section
+        id="about"
+        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.55 }}
+        >
+          <h2 className="mb-16 text-center text-4xl font-bold">About</h2>
+
+          <div className="grid items-center gap-12 md:grid-cols-2">
+            <div className="flex justify-center">
+              <img
+                src="/profile.jpg"
+                alt="Alaaeldeen"
+                className="h-72 w-72 rounded-full border-4 border-slate-800 object-cover shadow-2xl shadow-cyan-500/10"
+              />
+            </div>
+
+            <div>
+              <div className="leading-8 text-slate-400">
+                <p>
+                  I am a Computer Science student specializing in cybersecurity
+                  with a data science extension at Taylor's University. My
+                  interests focus on cybersecurity engineering, network defense,
+                  and applying machine learning to security challenges.
+                </p>
+
+                <p className="mt-6">
+                  My work includes building secure systems, analyzing cyber
+                  threats, and developing intelligent security solutions using
+                  modern tools such as Python, Docker, DevSecOps workflows, and
+                  machine learning frameworks.
+                </p>
+              </div>
+
+              <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl shadow-black/20 backdrop-blur">
+                <h3 className="mb-8 text-xl font-semibold">Education</h3>
+
+                <div className="grid gap-6 text-sm text-slate-400 sm:grid-cols-2">
+                  <div>
+                    <p className="text-slate-500">University</p>
+                    <p className="mt-1 text-slate-300">
+                      Taylor's University
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-slate-500">Program</p>
+                    <p className="mt-1 text-slate-300">
+                      Bachelor's of Computer Science - Cybersecurity Specialization
+                    </p>
+                    <p className="text-slate-400">Data Science Extension</p>
+                  </div>
+
+                  <div>
+                    <p className="text-slate-500">Expected Graduation</p>
+                    <p className="mt-1 text-slate-300">2026</p>
+                  </div>
+
+                  <div>
+                    <p className="text-slate-500">Location</p>
+                    <p className="mt-1 text-slate-300">
+                      Riyadh, Saudi Arabia
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* FEATURED PROJECTS */}
+      <section
+        id="projects"
+        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.55 }}
+        >
+          <h2 className="mb-4 text-center text-4xl font-bold">
+            Featured Projects
+          </h2>
+
+          <p className="mx-auto mb-16 max-w-2xl text-center text-slate-400">
+            Selected cybersecurity, AI, software engineering, and data projects
+            demonstrating practical security and development skills.
+          </p>
+
+          <div className="grid gap-10 md:grid-cols-2">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.45, delay: index * 0.04 }}
+                className={`group rounded-2xl border p-6 shadow-xl shadow-black/20 backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-cyan-500/10 ${
+                  index === 0
+                    ? "border-cyan-400/40 bg-cyan-950/30 hover:border-cyan-300/70"
+                    : "border-slate-800 bg-slate-900/60 hover:border-cyan-400/50"
+                }`}
+              >
+                {project.badge && (
+                  <span className="mb-4 inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-semibold text-cyan-300">
+                    {project.badge}
+                  </span>
+                )}
+
+                <h3 className="mb-3 text-xl font-semibold text-white">
+                  {project.title}
+                </h3>
+
+                <p className="mb-4 leading-7 text-slate-400">
+                  {project.desc}
+                </p>
+
+                <p className="mb-5 text-sm text-slate-500">
+                  {project.tools}
+                </p>
+
+                <div className="flex flex-wrap gap-4">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-lg border border-slate-700 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-cyan-400/50 hover:bg-cyan-400/10 hover:text-white"
+                    >
+                      GitHub
+                    </a>
+                  )}
+
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
+                    >
+                      Live
+                    </a>
+                  )}
+
+                  {project.diagram && (
+                    <a
+                      href={project.diagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-lg border border-slate-700 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-purple-400/50 hover:bg-purple-400/10 hover:text-white"
+                    >
+                      View Diagram
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* TECHNICAL SKILLS */}
+      <section
+        id="skills"
+        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.55 }}
+        >
+          <h2 className="mb-16 text-center text-4xl font-bold">
+            Technical Skills
+          </h2>
+
+          <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-3">
+            {technicalSkills.map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="rounded-2xl border border-slate-800 bg-slate-900/60 p-8 shadow-xl shadow-black/20 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-cyan-400/40 hover:shadow-cyan-500/10"
+              >
+                <i
+                  className={`${skill.iconClass} text-5xl ${
+                    skill.colorClass ?? "text-white"
+                  }`}
+                  aria-hidden="true"
+                />
+
+                <p className="mt-4 font-medium text-slate-300">
+                  {skill.name}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* CYBERSECURITY TOOLS */}
+      <section
+        id="security-tools"
+        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.55 }}
+        >
+          <h2 className="mb-4 text-center text-4xl font-bold">
+            Cybersecurity & Networking Tools
+          </h2>
+
+          <p className="mx-auto mb-16 max-w-2xl text-center text-slate-400">
+            Tools used across network analysis, penetration testing,
+            containerization, Linux environments, and secure infrastructure.
+          </p>
+
+          <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-3">
+            {securityTools.map((tool, index) => (
+              <motion.div
+                key={tool.name}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="rounded-2xl border border-slate-800 bg-slate-900/60 p-8 shadow-xl shadow-black/20 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-cyan-400/40 hover:shadow-cyan-500/10"
+              >
+                <img
+                  src={tool.icon}
+                  className="mx-auto h-14 invert brightness-200"
+                  alt={`${tool.name} logo`}
+                />
+
+                <p className="mt-4 font-medium text-slate-300">
+                  {tool.name}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* AI & DATA SCIENCE TOOLS */}
+      <section
+        id="ai-tools"
+        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.55 }}
+        >
+          <h2 className="mb-4 text-center text-4xl font-bold">
+            AI & Data Science Tools
+          </h2>
+
+          <p className="mx-auto mb-16 max-w-2xl text-center text-slate-400">
+            Tools used for machine learning, analytics, visualization, and
+            data-driven cybersecurity projects.
+          </p>
+
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3">
+            {aiTools.map((tool, index) => (
+              <motion.div
+                key={tool.name}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="flex flex-col items-center rounded-2xl border border-slate-800 bg-slate-900/60 p-8 shadow-xl shadow-black/20 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-cyan-400/40 hover:shadow-cyan-500/10"
+              >
+                <img
+                  src={tool.icon}
+                  className="mb-4 h-16 w-16"
+                  alt={`${tool.name} logo`}
+                />
+
+                <p className="text-lg font-semibold text-slate-200">
+                  {tool.name}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="scroll-mt-24">
+        <Contact />
+      </section>
+
+      {/* FOOTER */}
+      <footer className="px-6 py-12 text-center">
+        <h2 className="mb-4 text-2xl font-bold">Alaaeldeen</h2>
+
+        <p className="mb-6 text-slate-400">
+          Cybersecurity Engineer | AI Security | DevSecOps
         </p>
 
-        <p className="mt-6 text-gray-400 text-lg max-w-2xl mx-auto">
-          Computer Science student specializing in cybersecurity, network
-          security, DevSecOps, and AI-driven security systems.
-        </p>
-
-        <div className="mt-8 flex justify-center gap-5">
+        <div className="mb-6 flex justify-center gap-8 text-3xl">
+          <a
+            href="https://github.com/ialaaeldeen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-400 transition hover:text-white"
+            aria-label="GitHub profile"
+          >
+            <FaGithub />
+          </a>
 
           <a
-            href="#projects"
-            className="px-8 py-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+            href="https://www.linkedin.com/in/alaaeldeeneltayeb/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-400 transition hover:text-blue-500"
+            aria-label="LinkedIn profile"
           >
-            View Projects
+            <FaLinkedin />
           </a>
 
-        <a
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="border px-6 py-3 rounded-lg hover:bg-white hover:text-black transition"
+          <a
+            href="mailto:allouah30@outlook.com"
+            className="text-slate-400 transition hover:text-red-400"
+            aria-label="Send email"
           >
-          Download Resume
+            <MdEmail />
           </a>
-
         </div>
 
-      </section>
-
-
-     {/* ABOUT */}
-<section id="about" className="max-w-6xl mx-auto px-6 py-24">
-
-  <h2 className="text-4xl font-bold text-center mb-16">
-    About
-  </h2>
-
-  <div className="grid md:grid-cols-2 gap-12 items-center">
-
-    <div className="flex justify-center">
-      <img
-        src="/profile.jpg"
-        alt="Alaaeldeen"
-        className="w-72 h-72 object-cover rounded-full border-4 border-gray-800 shadow-lg"
-      />
-    </div>
-
-    <div>
-
-      <div className="text-gray-400 leading-relaxed">
-
-        <p>
-          I am a Computer Science student specializing in cybersecurity
-          with a data science extension at Taylor's University. My interests
-          focus on cybersecurity engineering, network defense, and applying
-          machine learning to security challenges.
-        </p>
-
-        <p className="mt-6">
-          My work includes building secure systems, analyzing cyber
-          threats, and developing intelligent security solutions using
-          modern tools such as Python, Docker, and machine learning
-          frameworks.
-        </p>
-
-      </div>
-
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 mt-8">
-
-      <h3 className="text-xl font-semibold mb-8">
-        Education
-      </h3>
-
-      <div className="space-y-6 text-gray-400 text-sm">
-
-        <div>
-          <p>Taylor's University</p>
-        </div>
-
-        <div>
-          <p>Bachelor's of Computer Science - Cybersecurity</p>
-          <p>Data Science Extension</p>
-        </div>
-
-        <div>
-          <p>Expected Graduation</p>
-          <p>2026</p>
-        </div>
-
-        <div>
-          <p>Location</p>
-          <p>Subang Jaya, Malaysia</p>
-        </div>
-
-      </div>
-
-    </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-     {/* FEATURED PROJECTS */}
-      <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
-
-      <h2 className="text-4xl font-bold text-center mb-16">
-      Featured Projects
-      </h2>
-
-      <div className="grid md:grid-cols-2 gap-10">
-
-      {[
-      {
-      title: "SAMHM – Mental Health Sentiment Analysis",
-      desc: "AI system analyzing social media text for early mental-health awareness using NLP and transformer models with secure DevSecOps deployment.",
-      tools: "Python · FastAPI · Next.js · Docker · PostgreSQL · CI/CD",
-      github: "https://github.com/wixsz/samhm-backend",
-      live: "https://samhm.vercel.app//"
-      },
-
-      {
-      title: "EcoCycle 2.0 – Smart Recycling Platform",
-      desc: "UX prototype for a sustainability platform integrating AI waste recognition, AR sorting and IoT smart-bin validation.",
-      tools: "Figma · UI/UX · Sustainability Design",
-      live: "https://www.figma.com/proto/OkUqDhaiTuRNRD4mygq6ct/EcoCycle?node-id=67-1294&p=f&t=jX6V54zOxsuJRLmW-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=67%3A1294&show-proto-sidebar=1"
-      },
-
-      {
-      title: "Secure Wireless Network & Penetration Testing",
-      desc: "Designed VLAN-segmented secure wireless architecture and performed penetration testing using Nmap and Metasploit.",
-      tools: "Cisco Packet Tracer · Ubuntu · Nmap · Metasploit",
-      diagram: "/network-architecture.png"
-      },
-
-      {
-      title: "Cloud Security with Deep Learning IDS",
-      desc: "Hybrid CNN-RNN intrusion detection system using CICIDS2018 dataset to detect cyber threats in cloud environments.",
-      tools: "Python · TensorFlow · CNN · RNN · Deep Learning"
-      },
-
-      {
-      title: "Fitness Tracker Application",
-      desc: "Java OOP-based fitness tracker with goal setting, progress visualization, and persistent data storage.",
-      tools: "Java · JavaFX · UML"
-      },
-
-      {
-      title: "Uber Data Breach Analysis (2016 & 2022)",
-      desc: "Cybersecurity, legal and ethical analysis of Uber data breaches including MFA fatigue, credential leaks and governance failures.",
-      tools: "Cybersecurity Analysis · GDPR · Ethics Frameworks"
-      },
-
-      {
-      title: "Healthcare Data Analytics (Hadoop Ecosystem)",
-      desc: "Built big-data healthcare pipeline using Hadoop, Hive and Impala for analytics on 55K medical records.",
-      tools: "Hadoop · Hive · Impala · Python · MySQL"
-      },
-
-      {
-      title: "Student Lifestyle & Academic Performance",
-      desc: "Statistical analysis of lifestyle factors affecting GPA using correlation, regression and visualization.",
-      tools: "R Language · Statistics · Data Visualization"
-      },
-
-      {
-      title: "Ronin Network Hack Investigation",
-      desc: "Digital forensic investigation of the Ronin blockchain hack linked to Lazarus Group including transaction analysis and forensic documentation.",
-      tools: "Wireshark · Blockchain Forensics"
-      },
-
-      {
-      title: "Market Basket Analysis – Apriori",
-      desc: "Association rule mining on retail transactions to discover product bundles using support, confidence and lift metrics.",
-      tools: "Python · Pandas · Data Mining · Visualization"
-      },
-
-      {
-      title: "OECD Municipal Waste Dashboard",
-      desc: "Interactive Tableau dashboard analyzing 30+ years of OECD waste generation trends aligned with SDG 12.5.",
-      tools: "Tableau · Data Storytelling · EDA"
-      }
-
-      ].map((project, i) => (
-
-      <div
-      key={i}
-      className="bg-slate-900/60 backdrop-blur border border-slate-800 rounded-xl p-6 hover:border-blue-500 hover:-translate-y-1 transition duration-300"
-      >
-
-      <h3 className="text-xl font-semibold mb-3">
-      {project.title}
-      </h3>
-
-      <p className="text-gray-400 mb-4">
-      {project.desc}
-      </p>
-
-      <p className="text-sm text-gray-500 mb-4">
-      {project.tools}
-      </p>
-
-      <div className="flex gap-4 flex-wrap">
-
-      {project.github && (
-      <a
-      href={project.github}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-sm px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 transition"
-      >
-      GitHub
-      </a>
-      )}
-
-      {project.live && (
-      <a
-      href={project.live}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-sm px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
-      >
-      Live
-      </a>
-      )}
-
-      </div>
-
-      </div>
-
-      ))}
-
-      </div>
-      </section>
-
-     {/* TECHNICAL SKILLS */}
-<section id="skills" className="max-w-6xl mx-auto px-6 py-24">
-
-  <h2 className="text-4xl font-bold text-center mb-16">
-    Technical Skills
-  </h2>
-
-  <div className="grid grid-cols-2 md:grid-cols-3 gap-12 text-center">
-
-    {/* Python */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <i className="devicon-python-plain text-5xl text-yellow-400"></i>
-      <p className="text-gray-300">Python</p>
-    </div>
-
-    {/* Java */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <i className="devicon-java-plain text-5xl text-red-500"></i>
-      <p className="text-gray-300">Java</p>
-    </div>
-
-    {/* C++ */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <i className="devicon-cplusplus-plain text-5xl text-blue-400"></i>
-      <p className="text-gray-300">C++</p>
-    </div>
-
-    {/* MySQL */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <i className="devicon-mysql-plain text-5xl text-blue-500"></i>
-      <p className="text-gray-300">MySQL</p>
-    </div>
-
-    {/* R */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <i className="devicon-r-plain text-5xl text-blue-300"></i>
-      <p className="text-gray-300">R</p>
-    </div>
-
-    {/* Next.js */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <i className="devicon-nextjs-original text-5xl"></i>
-      <p className="text-gray-300">Next.js</p>
-    </div>
-
-  </div>
-
-</section>
-
-        {/* CYBERSECURITY TOOLS */}
-<section id="security-tools" className="max-w-6xl mx-auto px-6 py-24">
-
-  <h2 className="text-4xl font-bold text-center mb-16">
-    Cybersecurity & Networking Tools
-  </h2>
-
-  <div className="grid grid-cols-2 md:grid-cols-3 gap-12 text-center">
-
-    {/* Wireshark */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <img
-        src="/icons/wireshark.svg"
-        className="h-14 mx-auto invert brightness-200"
-        alt="Wireshark"
-      />
-      <p className="text-gray-300">Wireshark</p>
-    </div>
-
-    {/* Metasploit */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <img
-        src="/icons/metasploit.svg"
-        className="h-14 mx-auto invert brightness-200"
-        alt="Metasploit"
-      />
-      <p className="text-gray-300">Metasploit</p>
-    </div>
-
-    {/* Docker */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <img
-        src="/icons/docker.svg"
-        className="h-14 mx-auto invert brightness-200"
-        alt="Docker"
-      />
-      <p className="text-gray-300">Docker</p>
-    </div>
-
-    {/* Cisco */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <img
-        src="/icons/cisco.svg"
-        className="h-14 mx-auto invert brightness-200"
-        alt="Cisco"
-      />
-      <p className="text-gray-300">Cisco</p>
-    </div>
-
-    {/* Kali Linux */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <img
-        src="/icons/kalilinux.svg"
-        className="h-14 mx-auto invert brightness-200"
-        alt="Kali Linux"
-      />
-      <p className="text-gray-300">Kali Linux</p>
-    </div>
-
-    {/* Linux */}
-    <div className="space-y-3 transform hover:scale-110 transition duration-300">
-      <img
-        src="/icons/linux.svg"
-        className="h-14 mx-auto invert brightness-200"
-        alt="Linux"
-      />
-      <p className="text-gray-300">Linux</p>
-    </div>
-
-  </div>
-
-</section>
-         {/* AI & DATA SCIENCE TOOLS */}
-<section id="ai-tools" className="max-w-6xl mx-auto px-6 py-24">
-
-  <h2 className="text-4xl font-bold text-center mb-16">
-    AI & Data Science Tools
-  </h2>
-
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-
-    {/* Python */}
-    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" className="w-16 h-16 mb-4"/>
-      <p className="text-lg font-semibold">Python</p>
-    </div>
-    
-
-
-    {/* R */}
-    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" className="w-16 h-16 mb-4"/>
-      <p className="text-lg font-semibold">R</p>
-    </div>
-
-    {/* Tableau */}
-    <div className="flex flex-col items-center bg-gray-900 border border-gray-800 rounded-xl p-8 hover:scale-105 transition">
-      <img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" className="w-16 h-16 mb-4"/>
-      <p className="text-lg font-semibold">Tableau</p>
-    </div>
-    
-
-  </div>
-
-</section>
-      {/* CONTACT FORM */}
-      <Contact />
-
-       {/* FOOTER */}
-<footer className="text-center py-12">
-
-  <h2 className="text-2xl font-bold mb-4">
-    Alaaeldeen
-  </h2>
-
-  <p className="text-gray-400 mb-6">
-    Cybersecurity Engineer | AI Security | DevSecOps
-  </p>
-
-  <div className="flex justify-center gap-8 text-3xl mb-6">
-
-    <a
-      href="https://github.com/ialaaeldeen"
-      target="_blank"
-      className="text-gray-400 hover:text-white transition"
-    >
-      <FaGithub />
-    </a>
-
-    <a
-      href="https://www.linkedin.com/in/alaaeldeeneltayeb/"
-      target="_blank"
-      className="text-gray-400 hover:text-blue-500 transition"
-    >
-      <FaLinkedin />
-    </a>
-
-    <a
-      href="mailto:allouah30@outlook.com"
-      className="text-gray-400 hover:text-red-400 transition"
-    >
-      <MdEmail />
-    </a>
-
-  </div>
-
-  <p className="text-gray-500 text-sm">
-    © 2026 Alaaeldeen
-  </p>
-
-</footer>
-
-</main>
-  );}
+        <p className="text-sm text-slate-500">© 2026 Alaaeldeen</p>
+      </footer>
+    </main>
+  );
+}
